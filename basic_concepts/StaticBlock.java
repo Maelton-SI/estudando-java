@@ -42,7 +42,7 @@ class Motocicleta {
     
 }
 
-public class StaticBlockEConstrutor {
+public class StaticBlock {
     
     public static void main(String[] args) throws ClassNotFoundException {
 
