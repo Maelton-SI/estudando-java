@@ -15,5 +15,6 @@ public class WrapperClasses {
     Character minhaVariavelChar = 'v';
 
     Boolean minhaVariavelBoolean;
+    
 }
 
