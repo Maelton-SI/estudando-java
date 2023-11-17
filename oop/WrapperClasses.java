@@ -6,13 +6,13 @@ public class WrapperClasses {
 
     Integer minhaVariavelInt;
 
-    Long minhaVariavelLong = 10L;
+    Long minhaVariavelLong;
 
-    Float minhaVariavelFloat = 5.6f;
+    Float minhaVariavelFloat;
 
-    Double minhaVariavelDouble = 7.8;
+    Double minhaVariavelDouble;
 
-    Character minhaVariavelChar = 'v';
+    Character minhaVariavelChar;
 
     Boolean minhaVariavelBoolean;
     
