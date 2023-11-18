@@ -29,10 +29,12 @@ class B extends A{
 class Conta {
 
     public Conta() {
+        
         System.out.println("Conta (contrutor default)");
     }
 
     public Conta(int numero) {
+        //Chama o construtor padrao da propria classe
         this();
 
         System.out.println("Conta (construtor parametrizado)");

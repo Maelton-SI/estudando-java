@@ -145,3 +145,28 @@ Uma interface, por natureza, é uma estrutura destinada a ser estendida e implem
 Mesmo que um método em uma intefarce forneça uma implementação padrão (método concreto), ele ainda pode ser sobrescrito por classes que implementem a interface, e, portanto, não é considerada "protected" ou "final" nesse sentido.
 
 Sendo assim, métodos protegidos *(protected)* e finais *(final)* não são suportados em interfaces Java.
+
+# Interfaces Funcionais (Functional Interfaces) em Java
+
+Interfaces funcionais também chamadas de SAM Interfaces - SAM stands for Single Abstract Interface -, são interfaces que possuem única e obrigatoriamente um único método abstrato. As interfaces funcionais podem não possuir ou ter N métodos concretos, porém possuem obrigatoriamente um único método abstrato.
+
+Para evitar possíveis enganos ou erros de implementação, podemos especificar que uma interface é funcional através do uso de uma annotation *(@FunctionalInterface)*, desse forma garantimos que a interface terá um único método abstrato na interface. Observe o exemplo abaixo:
+
+```
+@FunctionalInterface
+interface MinhaInterfaceFuncional {
+
+    void oi();
+
+    default void tchau() {
+        System.out.println("tchau");
+    }
+}
+```
+
+# Marker Interfaces
+
+São interfaces que não possuem nenhum método. Elas são usadas para marcar classes, indicando que as classes marcadas têm uma característica ou comportamento específico.
+
+Uma característica importante das marker interfaces é que elas não têm métodos a serem implementados pelas classes que as implementam. São usadas principalmente para sinalizar que uma classe possui uma característica particular e, por isso, são frequentemente chamadas de "marcadores" ou "bandeiras".
+
