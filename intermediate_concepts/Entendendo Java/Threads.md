@@ -140,7 +140,7 @@ public class ThreadsERunnableInterface {
 
 Se olharmos a documentação da interface Runnable iremos perceber que ela é uma interface funcional, ou seja, possui um único método abstrato, que é o método run().
 
-Logo podemos usar uma função lambda para implementarmos o método run() no momento de instanciamento da instâncias da classe Thread, observe como podemos fazer isso:
+Logo podemos usar uma função lambda para implementarmos o método run() no momento de instanciamento das instâncias da classe Thread, observe como podemos fazer isso:
 
 **Código:**
 
@@ -185,3 +185,100 @@ public class ThreadsELambdaFunctions {
 **Saída de execução:**
 
 ![](images/threads-and-lambda-functions.png)
+
+# Mutations em Java
+
+Quando algo é passível de mutação significa que isso pode ser modificado, por exemplo, variáveis de tipo primitivo.
+
+Threads modificando uma variável ou objeto ao mesmo tempo pode resultar em sérios problemas. Para previnir esse tipo de problema durante o uso de multiplas threads, podemos trabalhar com dados imutáveis ou utilizar métodos de thread-safe.
+
+Thread safe significa que o ato de acessar e modificar os valores de dados ou de um dado para um valor correto ou incorreto através multiplas threads simultaneamente não é permitido. Ou seja, os dados só podem ser acessados e/ou modificados por uma única thread ao mesmo tempo.
+
+Para garantir que seu método possa ser chamado apenas uma thread por vez use a keyword ***synchronized***. Ou seja, para transformar um método em um método thread-safe o defina utilizando a keyword *synchronized*.
+
+## Exemplo antes do uso do conceito de Thread-Safety
+
+**Código:**
+
+```
+class Contador {
+
+    int valor;
+    public void aumentarValor() { valor++; }
+}
+
+public class NotThreadSafe {
+    
+    public static void main(String[] args) {
+
+        Contador meuContador = new Contador();
+
+        Runnable obj1 = () -> { for(int i=0; i<10_000; i++){ meuContador.aumentarValor(); }; };
+        Runnable obj2 = () -> { for(int i=0; i<10_000; i++){ meuContador.aumentarValor(); }; };
+
+        Thread threadA = new Thread(obj1);
+        Thread threadB = new Thread(obj2);
+
+        threadA.start();
+        threadB.start();
+
+        try {
+            threadA.join();
+            threadB.join();
+
+        } catch(InterruptedException e){}
+
+        System.out.println("Valor do contador: " + meuContador.valor);
+    }
+}
+```
+
+**Saídas de execução (Para fins de exemplificação o códido foi executado 10 vezes):**
+
+![](images/not-thread-safe-output.png)
+
+## Exemplo após uso do conceito de Thread-Safety
+
+**Código:**
+
+```
+class Contador {
+
+    int valor;
+    public synchronized void aumentarValor() { valor++; }
+}
+
+public class SynchronizedKeyword {
+    
+    public static void main(String[] args) {
+
+        Contador meuContador = new Contador();
+
+        Runnable obj1 = () -> { for(int i=0; i<10_000; i++){ meuContador.aumentarValor(); }; };
+        Runnable obj2 = () -> { for(int i=0; i<10_000; i++){ meuContador.aumentarValor(); }; };
+
+        Thread threadA = new Thread(obj1);
+        Thread threadB = new Thread(obj2);
+
+        threadA.start();
+        threadB.start();
+
+        try {
+            threadA.join();
+            threadB.join();
+
+        } catch(InterruptedException e){}
+
+        System.out.println("Valor do contador: " + meuContador.valor);
+    }
+}
+```
+
+**Saídas de execução (Para fins de exemplificação o códido foi executado 10 vezes):**
+
+![](images/thread-safe.png)
+
+#### Método join()
+
+Para fazer com que o método main() espere que a execução das suas threads finalize antes de continuar sua execução, chame o método ***join()*** atraves das suas threads.
+
