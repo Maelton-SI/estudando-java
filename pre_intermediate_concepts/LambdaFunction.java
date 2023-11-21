@@ -64,6 +64,13 @@ public class LambdaFunction {
         terceiraInstancia.tchau();
 
         //LAMBDA COM ARGUMENTOS
+        SegundaInterfaceFuncional instanciaTeste = new SegundaInterfaceFuncional()
+        {
+            public void elogiar(String pessoa, String pessoa2) {
+                System.out.println(pessoa + pessoa2);
+            }
+        };
+
         SegundaInterfaceFuncional quartaInstancia = (paixao, seducao) -> System.out.println("Hey " + paixao + ", " + seducao);
 
         quartaInstancia.elogiar("Felpa", "you are breathtaking\n");

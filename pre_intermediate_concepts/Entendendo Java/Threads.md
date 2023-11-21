@@ -282,3 +282,8 @@ public class SynchronizedKeyword {
 
 Para fazer com que o método main() espere que a execução das suas threads finalize antes de continuar sua execução, chame o método ***join()*** atraves das suas threads.
 
+# Thread Status
+
+Everytime you create a thread it goes into a **new state**, apart from this new state there's also something called **runnable state**, after that there's a **running state**, there's a **waiting state** (also referred as block state), and the last state is the **dead state**.
+
+![](images/thread-status.png)
