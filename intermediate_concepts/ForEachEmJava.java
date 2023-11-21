@@ -3,7 +3,7 @@ import java.util.function.Consumer;
 import java.util.Arrays;
 
 /**
- * A classe Iterable possui um método denominado forEach().
+ * A interface Iterable possui um método denominado forEach().
  * 
  * O método forEach() recebe como argumento um objeto da interface funcional Consumer<T>, cujo método abstrato é o void accept(T o);
  * 
